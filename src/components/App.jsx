@@ -5,8 +5,20 @@ import Loader from './Loader/Loader';
 import Button from './Button/Button';
 import Modal from './Modal/Modal';
 
-export const App = () => {
-  return (
-    <div></div>
-  );
+export class App extends Component {
+  state = {
+    searchedWord: '',
+  }
+
+  onSubmitInput = word => {
+    
+  }
+
+  render() {
+    return (
+      <div>
+        <Searchbar onSubmitInput={this.onSubmitInput} />
+      </div>
+    );
+  }
 };
