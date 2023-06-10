@@ -7,13 +7,13 @@ import Modal from './Modal/Modal';
 
 export class App extends Component {
   state = {
-    searchedWord: '',
-  }
+    query: '',
+  };
 
-  onSubmitInput = word => {
+  onSubmitInput = query => {
     
-  }
-
+  };
+  
   render() {
     return (
       <div>
