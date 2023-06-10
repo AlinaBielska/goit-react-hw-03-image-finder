@@ -18,6 +18,7 @@ export class App extends Component {
     return (
       <div>
         <Searchbar onSubmitInput={this.onSubmitInput} />
+        <ImageGallery />
       </div>
     );
   }

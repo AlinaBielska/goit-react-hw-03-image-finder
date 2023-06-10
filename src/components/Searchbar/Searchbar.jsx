@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-// import css from './Searchbar.module.css';
+import css from './Searchbar.module.css';
 
 class Searchbar extends Component {
     state = {
