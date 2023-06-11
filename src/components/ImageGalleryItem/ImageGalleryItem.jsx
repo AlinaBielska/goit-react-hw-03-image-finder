@@ -3,10 +3,16 @@ import css from './ImageGalleryItem.module.css';
 
 class ImageGalleryItem extends Component {
     render() {
+        const { images } = this.props;
+
         return (
-            <li class="gallery-item">
-                <img src="" alt="" />
-            </li>
+            images.map(image => (
+                <li key={image.id} className={css.galleryItem}>
+                    <img
+                        src={image.webformatURL}
+                        alt={image.type} />
+                </li>
+            ))
         );
     }
 };

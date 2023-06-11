@@ -28,19 +28,19 @@ class Searchbar extends Component {
         const onSubmitForm = this.onSubmitForm;
 
         return (
-            <header class="searchbar">
-                <form class="form" onSubmit={onSubmitForm}>
-                    <button type="submit" class="button">
-                        <span class="button-label">Search</span>
+            <header className={css.searchbar}>
+                <form className={css.form} onSubmit={onSubmitForm}>
+                    <button type="submit" className={css.button}>
+                        <span className={css.buttonLabel}>Search</span>
                     </button>
 
                     <input
-                        class="input"
+                        className={css.input}
                         type="text"
-                        autocomplete="off"
-                        autofocus
+                        autoComplete="off"
+                        autoFocus
                         placeholder="Search images and photos"
-                        onChange= {onInputChange}
+                        onChange={onInputChange}
                     />
                 </form>
             </header>

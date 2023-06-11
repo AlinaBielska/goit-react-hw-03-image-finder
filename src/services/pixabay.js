@@ -13,7 +13,7 @@ const searchImages = async (query, page) => {
         per_page: perPage,
     });
 
-    let response = await axios.get(`https://pixabay.com/api/?${params}&q=` + searchForm.searchQuery.value);
+    let response = await axios.get(`https://pixabay.com/api/?${params}`);
 
     if (response.totalHits === 0) {
         alert('ERROR')
