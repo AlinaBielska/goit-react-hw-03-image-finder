@@ -46,9 +46,14 @@ export class App extends Component {
     }
   };
 
+  loadMoreButton = e => {
+    this.setState(prevState => ({ page: prevState.page + 1 }));
+  };
+
 
   render() {
-    const { images } = this.state;
+    const { images, totalHits, page } = this.state;
+    const totalPages = Math.ceil(totalHits / 12);
 
     return (
       <div>
@@ -58,7 +63,7 @@ export class App extends Component {
             <ImageGalleryItem images={images} />
           </ImageGallery>)
         }
-        <Button />
+        {page < totalPages && <Button loadMoreButton={this.loadMoreButton} />}
       </div>
     );
   };

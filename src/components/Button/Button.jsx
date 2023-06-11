@@ -3,8 +3,10 @@ import css from './Button.module.css';
 
 class Button extends Component {
     render() {
+        const loadMoreButton = this.props;
+
         return (
-            <button type="submit">Load more</button>
+            <button type="submit" onClick={loadMoreButton}>Load more</button>
         );
     }
 };
