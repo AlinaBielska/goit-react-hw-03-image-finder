@@ -6,7 +6,7 @@ class Button extends Component {
         const { loadMoreButton } = this.props;
 
         return (
-            <button type="submit" onClick={loadMoreButton}>Load more</button>
+            <button className={css.buttonLoadMore} type="submit" onClick={loadMoreButton}>Load more</button>
         );
     }
 };

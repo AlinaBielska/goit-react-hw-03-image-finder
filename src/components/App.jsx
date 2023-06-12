@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import css from './App.module.css';
 import searchImages from 'services/pixabay';
 import Searchbar from './Searchbar/Searchbar';
 import ImageGallery from './ImageGallery/ImageGallery';
@@ -56,7 +57,7 @@ export class App extends Component {
     const totalPages = Math.ceil(totalHits / 12);
 
     return (
-      <div>
+      <div className={css.App}>
         <Searchbar onSubmitInput={this.onSubmitInput} />
         {images.length > 0 && (
           <ImageGallery>
