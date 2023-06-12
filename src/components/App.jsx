@@ -24,14 +24,14 @@ export class App extends Component {
   };
 
   showResponse = async () => {
-    const { query, page } = this.state;
+    const { query, page, images } = this.state;
     try {
       const response = await searchImages(query, page);
-      this.setState({
+      this.setState(prevState => ({
         totalHits: response.data.total,
-        images: response.data.hits,
+        images: [...prevState.images, ...response.data.hits],
         isLoading: true,
-      });
+      }));
     } catch (error) {
       this.setState({ isError: true })
     } finally {

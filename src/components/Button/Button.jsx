@@ -3,7 +3,7 @@ import css from './Button.module.css';
 
 class Button extends Component {
     render() {
-        const loadMoreButton = this.props;
+        const { loadMoreButton } = this.props;
 
         return (
             <button type="submit" onClick={loadMoreButton}>Load more</button>
