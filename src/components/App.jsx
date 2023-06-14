@@ -25,16 +25,15 @@ export class App extends Component {
   };
 
   showResponse = async () => {
-    const { query, page, images } = this.state;
+    const { query, page } = this.state;
     try {
       const response = await searchImages(query, page);
       this.setState(prevState => ({
         totalHits: response.data.total,
         images: [...prevState.images, ...response.data.hits],
-        isLoading: true,
       }));
     } catch (error) {
-      this.setState({ isError: true })
+      this.setState({ isError: true, isLoading: false })
     } finally {
       this.setState({ isLoading: false });
     }
@@ -42,7 +41,12 @@ export class App extends Component {
 
   componentDidUpdate(_prevProps, prevState) {
     const { query, page } = this.state;
-    if (prevState.query !== query || prevState.page !== page) {
+    if (prevState.page !== page) {
+      this.setState({ isLoading: true });
+      this.showResponse();
+    } else if (prevState.query !== query) {
+      this.setState({ isLoading: true });
+      this.setState({ images: [] });
       this.showResponse();
     }
   };
@@ -53,7 +57,7 @@ export class App extends Component {
 
 
   render() {
-    const { images, totalHits, page } = this.state;
+    const { images, totalHits, page, isLoading, isError } = this.state;
     const totalPages = Math.ceil(totalHits / 12);
 
     return (
@@ -64,6 +68,8 @@ export class App extends Component {
             <ImageGalleryItem images={images} />
           </ImageGallery>)
         }
+        {isError && alert("Ups, coś poszło nie tak. Spróbuj wyszukać coś innego.")}
+        {isLoading && <Loader/>}
         {page < totalPages && <Button loadMoreButton={this.loadMoreButton} />}
       </div>
     );

@@ -7,7 +7,7 @@ class Searchbar extends Component {
     };
     
     onInputChange = e => {
-        this.setState({ query: e.target.value });
+        this.setState({ query: e.target.value.trim() });
     };
 
     onSubmitForm = e => {
@@ -15,7 +15,7 @@ class Searchbar extends Component {
         const { onSubmitInput } = this.props;
         const { query } = this.state;
         if (query.length === 0) {
-            alert("Napisz coś")
+            alert("Pole wyszukiwania nie może być puste")
         } else {
             onSubmitInput(query);
             this.setState({ query: "" });
