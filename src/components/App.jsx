@@ -16,6 +16,8 @@ export class App extends Component {
     totalHits: null,
     isLoading: false,
     isError: false,
+    isModalOpen: false,
+    modalURL: '',
   };
 
   onSubmitInput = query => {
@@ -55,23 +57,48 @@ export class App extends Component {
     this.setState(prevState => ({ page: prevState.page + 1 }));
   };
 
+  closeModalByEscape = e => {
+    if (e.key === 'Escape') {
+      this.setState({ isModalOpen: false });
+    }
+  };
+
+  closeModalByOverlay = e => {
+    if (e.target.name !== 'IMG') {
+      this.setState({ isModalOpen: false });
+    }
+  };
+
+  imageClicked = e => {
+    e.preventDefault();
+    const url = e.target.dataset['src'];
+    this.setState({ isModalOpen: true, modalURL: url });
+  };
+
 
   render() {
-    const { images, totalHits, page, isLoading, isError } = this.state;
+    const { query, images, totalHits, page, isLoading, isError, modalURL, isModalOpen } = this.state;
     const totalPages = Math.ceil(totalHits / 12);
 
     return (
+      <>
       <div className={css.App}>
         <Searchbar onSubmitInput={this.onSubmitInput} />
         {images.length > 0 && (
           <ImageGallery>
-            <ImageGalleryItem images={images} />
+              <ImageGalleryItem images={images} onClick={this.imageClicked} />
           </ImageGallery>)
         }
         {isError && alert("Ups, coś poszło nie tak. Spróbuj wyszukać coś innego.")}
         {isLoading && <Loader/>}
         {page < totalPages && <Button loadMoreButton={this.loadMoreButton} />}
-      </div>
+        </div>
+        {isModalOpen && <Modal
+          closeModalByEscape={this.closeModalByEscape}
+          closeModalByOverlay={this.closeModalByOverlay}
+          src={modalURL}
+          alt={query} />}
+        </>
     );
   };
 }

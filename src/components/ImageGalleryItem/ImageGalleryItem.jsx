@@ -3,7 +3,7 @@ import css from './ImageGalleryItem.module.css';
 
 class ImageGalleryItem extends Component {
     render() {
-        const { images } = this.props;
+        const { images, onClick } = this.props;
 
         return (
             images.map(image => (
@@ -11,7 +11,9 @@ class ImageGalleryItem extends Component {
                     <img
                         className={css.galleryItemImage}
                         src={image.webformatURL}
-                        alt={image.type} />
+                        alt={image.type}
+                        data-src={image.largeImageURL}
+                        onClick={onClick} />
                 </li>
             ))
         );
