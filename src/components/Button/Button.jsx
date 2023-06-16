@@ -1,4 +1,5 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import css from './Button.module.css';
 
 class Button extends Component {
@@ -9,6 +10,10 @@ class Button extends Component {
             <button className={css.buttonLoadMore} type="submit" onClick={loadMoreButton}>Load more</button>
         );
     }
+};
+
+Button.propTypes = {
+    loadMoreButton: PropTypes.func.isRequired,
 };
 
 export default Button
