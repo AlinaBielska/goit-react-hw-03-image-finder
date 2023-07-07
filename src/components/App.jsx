@@ -91,7 +91,7 @@ export class App extends Component {
         }
         {isError && alert("Ups, coś poszło nie tak. Spróbuj wyszukać coś innego.")}
         {isLoading && <Loader/>}
-        {page < totalPages && <Button loadMoreButton={this.loadMoreButton} />}
+        {page < totalPages && <Button loadMoreButton={this.loadMoreButton} titleButton={"Load more"} />}
         </div>
         {isModalOpen && <Modal
           closeModalByEscape={this.closeModalByEscape}
